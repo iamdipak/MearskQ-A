@@ -1,0 +1,38 @@
+1)	What are different artifacts you need to create - name of the artifacts and its purpose
+    A. Based on the build pipeline We should create a build definition (or) tasks like copy files, published build artifacts which will help us to create default drop location for our files (ARM) used during deployment.
+
+2)	List the tools you will to create and store the ARM templates.
+    A. Vscode, sublime text, notepad++
+    
+3)	Explain the process and steps to create automated deployment pipeline. 
+    A.
+    I)    place your code in repo.
+    II)   create build pipeline linking to your repo.
+    III)  add task to your build pipeline to create artifacts
+    IV)   run the build pipeline
+    V)    create a release pipline,
+    VI)   link you artifacts to release pipeline.
+    VII)  create stage, and add task Azure resource group deployment
+    VIII) create a service connection (provide subscription details like subscription name, SPN ID, Secrets, Tenant ID)with azure if already not in place. 
+    IX)   select resource group, location to deploy. 
+    X)    select Templates file from build artifacts.
+    XI)   select parameters files from Buld artifacts if Override template parameters not supplied.
+    XII)  save a pipeline and create release.
+
+4) Create a sample ARM template you will use to deploy a Windows VM of any size
+   A. jsons files uploaded in repo.
+   Note: Depending upon the place you are executing ARM file variable file can be pass through, Resource Deployment, Overwrite variable parameters or of executing from powershell, we can create
+         Custom hash table\object.
+   
+5) Explain how you will access the password stored in Key Vault and use it as Admin Password in the VM ARM template.
+   A.please find Below ARM Template adminPassword section, connect to the keyvault and fetch SecretName named as adminPassword and use it as password of resource.
+
+
+"adminPassword": {
+  "reference": {
+    "keyVault": {
+        "id": "/subscriptions/<subscriptionID>/resourceGroups/<resourceGroupName>/Providers/Microsoft.keyVault/vaults/<KeyVaultName>"
+    },
+    "SecretName": "adminPassword"
+    }
+}
