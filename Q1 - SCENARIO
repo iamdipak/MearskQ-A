@@ -6,22 +6,19 @@ The code repository was maintained in TFS and moved to Azure GIT now. The TFS ha
 deployments were done to the respective environment manually. The customer is planning to setup Azure DevOps service for below requirements:
 
 
-1)	The build should trigger as soon as anyone in the dev team checks in code to master branch.
-A.  In build pipeline triggers, continues integration needs to be enabled in this case and need to select your repo, from where   the code changes should be detected.
+1) The build should trigger as soon as anyone in the dev team checks in code to master branch.
+   A.  In build pipeline triggers, continues integration needs to be enabled in this case and need to select your repo, from where   the code changes should be detected.
 
 2) There will be test projects which will create and maintained in the solution along the Web and API. The trigger should build all the 3 projects - Web, API and test. The build should not be successful if any test fails.
-
-A. This is default behavior of azure build pipeline which will not success if any previous task failed (Only when all previous tasks have succeeded)
+   A. This is default behavior of azure build pipeline which will not success if any previous task failed (Only when all previous tasks have succeeded)
 
 3) The deployment of code and artifacts should be automated to Dev environment. 
-
-A. We can automate by schedule the jobs based on build and release pipeline (or) automate by API  Build and release triggers.
+   A. We can automate by schedule the jobs based on build and release pipeline (or) automate by API  Build and release triggers.
 
 4) Upon successful deployment to the Dev environment, deployment should be easily promoted to QA and Prod through automated process.
-
-A. This can be done using pre-deployment condition trigger, select after stage and then the name of stages. 
+   A. This can be done using pre-deployment condition trigger, select after stage and then the name of stages. 
 
 5) The deployments to QA and Prod should be enabled with Approvals from approvers only.
-	In stage pre-deployment condition - > select pre-deployments approval and specify email address.
-	Based on our use case we can utilize our Approval policies
+   A. In stage pre-deployment condition - > select pre-deployments approval and specify email address.
+       Based on our use case we can utilize our Approval policies
 
