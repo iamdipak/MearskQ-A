@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: <acr-name>.azurecr.io/image:v1
+        image: <ACR-Name>.azurecr.io/image:v1
         ports:
         - containerPort: 80
