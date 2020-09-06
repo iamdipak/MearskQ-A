@@ -1,19 +1,19 @@
-1)	The middle layer should be implemented as Microservices using Azure AKS
-    A. To deploy Microservice we need to create the image of application in 1 way we can push image on to docker hub using “docker push docker.io/account/image.RELEASE” command, 
-       Once pushed to docker create deployment.yaml file containing required instruction and run command
-       Kubectl apply -f deployment.yaml, this will create microservices in AKS.
+1) The middle layer should be implemented as Microservices using Azure AKS
+A. To deploy Microservice we need to create the image of application in 1 way we can push image on to docker hub using “docker push docker.io/account/image.RELEASE”  
+command, Once pushed to docker create deployment.yaml file containing required instruction and run command
+Kubectl apply -f deployment.yaml, this will create microservices in AKS.
     
-2)	The middle layer API should be deployed as containerized application images
-    A. In this case I am assuming we already have ACR in placed in azure.
-       I)	az acr import -n <name of your ACR>  --source docker.io/library/ mycustomimage:0.1 –image mycustomimage:0.1
-       II)	post image import we can see image name mycustomimage and version 0.1 is shown in repository section of ACR.
-       III)	Run “az aks create --location $location --subscription $subscription --resource-group $resource-group --name $aksname --service-principal $spnid --client-secret $spnsecret --node-count 2 --node-vm-size Standard_B2s --attach-acr <ACRName>” to create aks cluster and attach acr at same time.
-       IV)	If you already have Kubernetes provisioned then, we can create yaml file sample in repo and run “kubectl apply -f Deploy.yaml” this will create a deployment using acr image. (sample file uploaded in repo)
-       
-       
-       
-3)	The container images will use Azure Container Repository (ACR) as the private image repository
-Shared yaml file for running deployamnet using acr image. Assuming image already been imported in ACR using az acr import command.
+2) The middle layer API should be deployed as containerized application images
+A. In this case I am assuming we already have ACR in placed in azure.
+I)	az acr import -n <name of your ACR>  --source docker.io/library/ mycustomimage:0.1 –image mycustomimage:0.1
+II)	post image import we can see image name mycustomimage and version 0.1 is shown in repository section of ACR.
+III)	Run “az aks create --location $location --subscription $subscription --resource-group $resource-group --name $aksname --service-principal $spnid --client-
+        secret $spnsecret --node-count 2 --node-vm-size Standard_B2s --attach-acr <ACRName>” to create aks cluster and attach acr at same time.
+IV)	If you already have Kubernetes provisioned then, we can create yaml file sample in repo and run “kubectl apply -f Deploy.yaml” this will create a deployment
+        using acr image. (sample file uploaded in repo)
+              
+3)  The container images will use Azure Container Repository (ACR) as the private image repository
+A. Shared yaml file for running deployamnet using acr image. Assuming image already been imported in ACR using az acr import command.
 Note: please make sure SPN used to run AKS have necessary permission in ACR to use image available in ACR
 
 4)	The CI/CD pipelines for microservices should be implemented using Azure DevOps services.
